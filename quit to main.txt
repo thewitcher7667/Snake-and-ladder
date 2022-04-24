@@ -1,0 +1,299 @@
+import os
+from tkinter import *
+from tkinter import Tk
+import random
+import stat
+import time
+
+from tkinter import messagebox
+
+
+
+
+#sides
+
+
+
+
+
+window1 = Tk()
+window1.geometry("700x700")
+window1.title("snake and ladder")
+window1.resizable(False, False)
+window1.config(bg="#e1e3de")
+frame1 = Frame(window1)
+frame1.pack()
+frame2 = Frame(frame1 )
+frame3 = Frame(frame2)
+canvas_wall = Canvas(window1,width=600,height=200)
+canvas_wall.pack()
+wal = PhotoImage(file="wall2.png")
+wall = canvas_wall.create_image(300,350,image=wal)
+
+icon1 = PhotoImage(file='icon1.png')
+window1.iconphoto(True,icon1)
+#title1
+
+label1 = Label(frame1,text="sNaCks AND LaDdErS",
+               font=('Arial',40,'bold'),
+               fg="#81d12c",
+               padx="20",
+               pady="20",
+               bg="#d1dec3"
+               )
+label1.pack()
+
+
+#title 2 contain your choices from 1-welcome  2-single player 3-two player 4-choose 1 or 2 dies
+frame2.pack()
+
+frame3.pack( )
+label2 = Label(frame2,text="welcome to the game\n choose:",
+               pady=20,
+               font=40)
+label2.pack()
+
+#last and 1 last button func
+
+  #last button
+def b4():
+    if messagebox.askyesno(title='snacks and ladders', message='Do you really wand to quit', icon='question'):
+        quit()
+    else:
+        print("")
+
+   #die button
+
+def die():
+    with open("gameT.txt", 'w') as f:
+        pass
+    window2 = Tk()
+    window2.title("snacks and ladders")
+    window2.geometry("250x200")
+    window2.resizable(False, False)
+    window2.config(bg="#81d12c")
+    label21= Label(window2,text="choose game type :",fg="black",bg="#e1e3de",font=20)
+    label21.pack()
+
+    def cho():
+        messagebox.showinfo(title='snacks and ladders', message='the game will be with 1 die')
+        window2.destroy()
+        with open('gameT.txt', 'w') as file:
+            file.write("1die")
+
+
+
+    def cho2():
+        messagebox.showinfo(title='snacks and ladders', message='the game will be with 2 dies')
+        window2.destroy()
+        with open('gameT.txt', 'w') as file:
+            file.write("2die")
+
+    bl = Button(window2, text="long game", font=40, command=cho)
+    bl.pack(side="right")
+    bq = Button(window2, text="quick game", font=40, command=cho2)
+    bq.pack(side="left")
+
+    window2.protocol("WM_DELETE_WINDOW",die)
+    window2.mainloop()
+
+
+def s2():
+    window1.destroy()
+    window_wall = Tk()
+    window_wall.geometry("726x700")
+    window_wall.title("snacks and ladders")
+    window_wall.resizable(False, False)
+    canvas_w = Canvas(window_wall, width=726, height=700)
+    canvas_w.pack()
+    snake = PhotoImage(file="wallmain.png")
+    snakew = canvas_w.create_image(355, 350, image=snake, )
+    window_wall.protocol("WM_DELETE_WINDOW", )
+
+    # die options for the exterior window
+    window_die = Tk()
+    window_die.geometry("300x300")
+    window_die.focus()
+    window_die.resizable(False, True)
+    window_die.title("snacks and ladders")
+    window_die.config(bg="#e2e38f")
+
+    path = "gameT.txt"
+    with open("gameT.txt") as file:
+        i = file.read()
+    if i == "1die":
+        frame_the_die = Frame(window_die, bg='BLACK', bd=5, relief="groove", width=110, height=115)
+        frame_the_die1 = Frame(window_die, bg="black", bd=5, relief="groove", width=110, height=115)
+
+        def player1():
+            for widget in frame_the_die1.winfo_children():
+                widget.forget()
+
+            thedie = ["1", "2", "3", "4", "5", "6"]
+            z = random.choice(thedie)
+            print(z)
+
+            if z == "1":
+                c1 = Canvas(frame_the_die, width=106, height=99)
+                c1.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c1.pack()
+            elif z == "2":
+                c2 = Canvas(frame_the_die, width=106, height=99)
+                c2.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c2.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c2.pack()
+            elif z == "3":
+                c3 = Canvas(frame_the_die, width=106, height=99)
+                c3.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c3.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c3.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c3.pack()
+
+            elif z == "4":
+                c4 = Canvas(frame_the_die, width=106, height=99)
+                c4.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c4.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c4.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c4.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c4.pack()
+
+            elif z == "5":
+                c5 = Canvas(frame_the_die, width=106, height=99)
+                c5.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c5.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c5.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c5.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c5.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c5.pack()
+
+            elif z == "6":
+                c6 = Canvas(frame_the_die, width=106, height=99)
+                c6.create_oval(26, 50, 26, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 50, 79, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c6.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c6.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c6.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c6.pack()
+            else:
+                print("error")
+
+        frame_the_die.pack(anchor=NE, pady=20, side=RIGHT)
+
+        def player2():
+            for widget in frame_the_die.winfo_children():
+                widget.forget()
+
+            thedie = ["1", "2", "3", "4", "5", "6"]
+            z = random.choice(thedie)
+            print(z)
+
+            if z == "1":
+                c1 = Canvas(frame_the_die1, width=106, height=99)
+                c1.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c1.pack()
+            elif z == "2":
+                c2 = Canvas(frame_the_die1, width=106, height=99)
+                c2.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c2.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c2.pack()
+            elif z == "3":
+                c3 = Canvas(frame_the_die1, width=106, height=99)
+                c3.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c3.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c3.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c3.pack()
+
+            elif z == "4":
+                c4 = Canvas(frame_the_die1, width=106, height=99)
+                c4.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c4.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c4.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c4.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c4.pack()
+
+            elif z == "5":
+                c5 = Canvas(frame_the_die1, width=106, height=99)
+                c5.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c5.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c5.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c5.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c5.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c5.pack()
+
+            elif z == "6":
+                c6 = Canvas(frame_the_die1, width=106, height=99)
+                c6.create_oval(26, 50, 26, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 50, 79, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c6.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c6.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c6.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c6.pack()
+            else:
+                print("error")
+
+        frame_the_die1.pack(anchor=E, pady=20)
+
+        roll = Button(window_die, command=player1, text="PLAYER 1", font=20)
+        roll.pack(side=TOP, anchor=NW)
+
+        roll1 = Button(window_die, command=player2, text="PLAYER 2", font=20)
+        roll1.pack(anchor=W)
+
+        def qd():
+            window_die.destroy()
+            window_wall.destroy()
+
+        button_qd = Button(window_die, text="EXIT", font=20, relief="groove", bg="#eaf2bf", command=qd)
+        button_qd.pack(anchor=S, side=LEFT)
+
+        def qm():
+            pass
+
+        button_qm = Button(window_die, text="Quit to main menu", font=20, relief="groove", bg="#eaf2bf", command=qm)
+        button_qm.pack(anchor=S, side=LEFT)
+
+        print(i)
+
+
+    elif i == "2die":
+        print(i)
+
+    else:
+        print("error")
+    window_die.protocol("WM_DELETE_WINDOW", qd )
+    window_wall.protocol("WM_DELETE_WINDOW", qd )
+    window_die.mainloop()
+
+    window_wall.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#buttons
+button_p1 = Button(frame2,text="Single player",font=20,pady=20,relief="flat",bg="#eaf2bf",width=10 , )
+button_p1.pack(side="top")
+button_p2 = Button(frame2,text="Two players",font=20,pady=20,relief="groove",bg="#eaf2bf",width=10 , command=s2)
+button_p2.pack(side="top")
+button_p3 = Button(frame2,text="Game type",font=20,pady=20,relief="flat",bg="#eaf2bf",width=10 ,command=die)
+button_p3.pack(side="top" )
+button_p4 = Button(frame2,text="QUIT",font=20,pady=25,relief="groove",bg="#eaf2bf",width=10, command=b4)
+button_p4.pack(side="top")
+
+
+
+window1.mainloop()
