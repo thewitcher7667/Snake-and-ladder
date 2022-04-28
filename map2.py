@@ -4,9 +4,14 @@ from tkinter import Tk
 import random
 import tkinter as tk
 
-import stat
-import time
 
+#######################################################################
+######################################################################
+#####################################################################
+#player 1 only vs comp
+#######################################################################
+######################################################################
+#####################################################################
 
     #main window
 
@@ -26,19 +31,21 @@ snakew = canvas_w.create_image(355, 350, image=snake,)
 
 
 #die options for the exterior window
-window_die = Tk()
-window_die.geometry("300x300")
-window_die.focus()
-window_die.resizable(False, True)
+window_die = Toplevel()
+window_die.geometry("300x120")
+window_die.resizable(False, False)
 window_die.title("snacks and ladders")
 window_die.config(bg="#e2e38f")
-window_die.focus_force()
+
 
 path = "gameT.txt"
 with open("gameT.txt") as file:
     i = file.read()
+
 if i == "1die" :
+
     frame_the_die = Frame(window_die, bg='BLACK', bd=5, relief="groove", width=110, height=115)
+
     frame_the_die1 = Frame(window_die, bg="black", bd=5, relief="groove", width=110, height=115)
 
 
@@ -97,70 +104,10 @@ if i == "1die" :
         else:
             print("error")
 
-
     frame_the_die.pack(anchor=NE, pady=20, side=RIGHT)
 
-
-    def player2():
-        for widget in frame_the_die.winfo_children():
-            widget.forget()
-
-        thedie = ["1", "2", "3", "4", "5", "6"]
-        z = random.choice(thedie)
-        print(z)
-        with open("player2.txt", 'a') as file:
-          file.write(z)
-          file.close()
-        if z == "1":
-            c1 = Canvas(frame_the_die1, width=106, height=99)
-            c1.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
-            c1.pack()
-        elif z == "2":
-            c2 = Canvas(frame_the_die1, width=106, height=99)
-            c2.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
-            c2.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
-            c2.pack()
-        elif z == "3":
-            c3 = Canvas(frame_the_die1, width=106, height=99)
-            c3.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
-            c3.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
-            c3.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
-            c3.pack()
-
-        elif z == "4":
-            c4 = Canvas(frame_the_die1, width=106, height=99)
-            c4.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
-            c4.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
-            c4.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
-            c4.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
-            c4.pack()
-
-        elif z == "5":
-            c5 = Canvas(frame_the_die1, width=106, height=99)
-            c5.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
-            c5.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
-            c5.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
-            c5.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
-            c5.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
-            c5.pack()
-
-        elif z == "6":
-            c6 = Canvas(frame_the_die1, width=106, height=99)
-            c6.create_oval(26, 50, 26, 54, outline="black", fill="black", width=20)
-            c6.create_oval(79, 50, 79, 54, outline="black", fill="black", width=20)
-            c6.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
-            c6.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
-            c6.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
-            c6.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
-            c6.pack()
-        else:
-            print("error")
-
-
-    frame_the_die1.pack(anchor=E, pady=20)
-
     def move1():
-        with open("player1.txt") as file :
+        with open("player1.txt") as file:
             dew = file.read()
             total = 0
             for ele in range(0, len(dew)):
@@ -978,7 +925,27 @@ if i == "1die" :
                     tk.Misc.lift(ten)
 
 
+    def player2():
+
+
+
+        thedie = ["1", "2", "3", "4", "5", "6"]
+        z = random.choice(thedie)
+        print(z)
+        with open("player2.txt", 'a') as file:
+          file.write(z)
+          file.close()
+
+
+
+
+
+
+
+
+
     def move2():
+
         with open("player2.txt") as file:
             dew1 = file.read()
             total2 = 0
@@ -1797,11 +1764,19 @@ if i == "1die" :
                     tk.Misc.lift(ten)
 
 
-    roll = Button(window_die, command=lambda: [player1(), move1()], text="PLAYER 1", font=20)
+
+
+
+
+
+    roll = Button(window_die, command=lambda: [player1(), move1(),player2(),move2(),], text="PLAYER 1", font=20)
+
     roll.pack(side=TOP, anchor=NW)
 
-    roll1 = Button(window_die, command=lambda: [player2(), move2()], text="PLAYER 2", font=20)
+    roll1 = Button(window_die, state=DISABLED,text="PLAYER 2", font=20)
     roll1.pack(anchor=W)
+
+
     def qd():
         open("player1.txt", 'w').close()
         open("player2.txt", 'w').close()
@@ -1810,7 +1785,7 @@ if i == "1die" :
 
 
     button_qd = Button(window_die, text="EXIT", font=20, relief="groove", bg="#eaf2bf", command=qd)
-    button_qd.pack(anchor=S, side=LEFT)
+    button_qd.pack(side=TOP, anchor=W)
     def qm():
         pass
 
@@ -1820,6 +1795,15 @@ if i == "1die" :
 
 
     print(i)
+
+
+
+
+
+
+
+
+
 
 
 elif i == "2die":
