@@ -3650,6 +3650,7 @@ def s2():
                         ten.place(x=660, y=30)
                         tk.Misc.lift(ten)
 
+
         roll = Button(window_die, command=lambda: [player1(), move1()], text="PLAYER 1", font=20)
         roll.pack(side=TOP, anchor=NW)
 
