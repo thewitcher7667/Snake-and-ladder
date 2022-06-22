@@ -1,7 +1,7 @@
 from tkinter import *
 import random
 import time
-save = [0, 0]
+save = [1, 0]
 
 playwindow = Tk()  # the start menue contain buttons
 playwindow.geometry("750x750")
@@ -23,13 +23,10 @@ for r in range(1, 11):
                                                                                         ipadx=19.5,
                                                                                         ipady=19.5)
 
-
 if save[0] == 0 :
     def die():
         thedie = ["1", "2", "3", "4", "5", "6"]
         z = random.choice(thedie)
-        global few
-
         if z == "1":
             c1 = Canvas(playwindow, width=106, height=99)
             c1.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
