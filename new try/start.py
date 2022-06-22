@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-
 start = Tk()  # the start menue contain buttons
 start.geometry("780x720")
 start.title("snake and ladder")
@@ -13,15 +12,43 @@ icon1 = PhotoImage(file='icon1.png')
 start.iconphoto(True,icon1)
 frame1 = Frame(start)
 frame1.config(bg="#e1e3de")
+
 # ############################################################button 1 to play start
-button1 = Button(frame1, text="play", command="", font=20, pady=20, relief="sunken", bg="#eaf2bf", width=10,
+def play():
+    playwindow = Tk()  # the start menue contain buttons
+    playwindow.geometry("700x700")
+    playwindow.title("snake and ladder")
+    playwindow.resizable(False, False)
+    playwindow.config(bg="red")
+    a = 101
+    b = [[1,3,5,7,9],[2,4,6,8,10]]
+    for r in range(1,11):
+        if r in b[0]:
+            for c in range(1,11):
+                a = a - 1
+                Label(playwindow, text=a, bg="red", width=2, relief=SOLID, fg="white").grid(row=r, column=c+1, ipadx=19.5,
+                                                                                            ipady=19.5)
+        if r in b[1]:
+            for cd in range(11,1,-1):
+                a = a - 1
+                Label(playwindow, text=a, bg="red", width=2, relief=SOLID, fg="white").grid(row=r, column=cd ,
+                                                                                            ipadx=19.5,
+                                                                                            ipady=19.5)
+
+
+    playwindow.mainloop()
+
+button1 = Button(frame1, text="play", command=play, font=20, pady=20, relief="sunken", bg="#eaf2bf", width=10,
                  activebackground="#e1e3de", bd=1, cursor="hand2")
 button1.pack(side=TOP, pady=30)
+
 # ############################################################button 1 to play end
 # ############################################################button 2 to options start
 # The command for the button 2 start
+
 def gametype():
     # command for child button in the game type window to save the option that player chooses and to quit yhe window
+
     def savegametype():
         save = [(v.get()), (vv.get())]  # save the value of the option default value = 0 : I die , player 1
         print(save)   # to ensure from result for me
@@ -56,14 +83,16 @@ def gametype():
     # but it above all for the v.get and vv.get to be enabled
     Button(gametypewindow,text="Save",pady=10, relief="sunken", bg="#eaf2bf", width=8,
                  activebackground="#e1e3de", bd=1, cursor="hand2", command=savegametype).place(x=15,y=170)
+
     # end of save button
     # strict if player opens it must choose or it will give birth
     gametypewindow.protocol("WM_DELETE_WINDOW", gametype)
     framegametype1.place(x=15,y=40)
     framegametype2.place(x=150,y=40)
     gametypewindow.mainloop()
-    # end of button 2 def command
 
+
+    # end of button 2 def command
 
 button2 = Button(frame1, text="Game type", command=gametype, font=20, pady=20, relief="sunken", bg="#eaf2bf", width=10,
                  activebackground="#e1e3de", bd=1, cursor="hand2")
