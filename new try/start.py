@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
+import random
+import os
 start = Tk()  # the start menue contain buttons
 start.geometry("780x720")
 start.title("snake and ladder")
@@ -16,25 +18,179 @@ frame1.config(bg="#e1e3de")
 # ############################################################button 1 to play start
 def play():
     playwindow = Tk()  # the start menue contain buttons
-    playwindow.geometry("700x700")
+    playwindow.geometry("750x750")
     playwindow.title("snake and ladder")
     playwindow.resizable(False, False)
     playwindow.config(bg="red")
     a = 101
-    b = [[1,3,5,7,9],[2,4,6,8,10]]
-    for r in range(1,11):
+    b = [[1, 3, 5, 7, 9], [2, 4, 6, 8, 10]]
+    for r in range(1, 11):
         if r in b[0]:
-            for c in range(1,11):
+            for c in range(1, 11):
                 a = a - 1
-                Label(playwindow, text=a, bg="red", width=2, relief=SOLID, fg="white").grid(row=r, column=c+1, ipadx=19.5,
-                                                                                            ipady=19.5)
-        if r in b[1]:
-            for cd in range(11,1,-1):
-                a = a - 1
-                Label(playwindow, text=a, bg="red", width=2, relief=SOLID, fg="white").grid(row=r, column=cd ,
+                Label(playwindow, text=a, bg="red", width=2, relief=SOLID, fg="white").grid(row=r, column=c + 1,
                                                                                             ipadx=19.5,
                                                                                             ipady=19.5)
+        if r in b[1]:
+            for cd in range(11, 1, -1):
+                a = a - 1
+                Label(playwindow, text=a, bg="red", width=2, relief=SOLID, fg="white").grid(row=r, column=cd,
+                                                                                            ipadx=19.5,
+                                                                                            ipady=19.5)
+    opti = []
+    saveread = open("./imp files/save.txt", "r")
+    global txt
+    for txt in saveread:
+        pass
+    opti.append(txt[0])
+    opti.append(txt[1:len(txt)])
 
+    def die():
+        if opti[0] == "0":
+            thedie = ["1", "2", "3", "4", "5", "6"]
+            z = random.choice(thedie)
+            if z == "1":
+                c1 = Canvas(playwindow, width=106, height=99)
+                c1.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c1.place(x=1, y=620)
+            elif z == "2":
+                c2 = Canvas(playwindow, width=106, height=99)
+                c2.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c2.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c2.place(x=1, y=620)
+            elif z == "3":
+                c3 = Canvas(playwindow, width=106, height=99)
+                c3.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c3.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c3.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c3.place(x=1, y=620)
+
+            elif z == "4":
+                c4 = Canvas(playwindow, width=106, height=99)
+                c4.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c4.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c4.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c4.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c4.place(x=1, y=620)
+
+            elif z == "5":
+                c5 = Canvas(playwindow, width=106, height=99)
+                c5.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c5.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c5.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c5.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c5.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c5.place(x=1, y=620)
+
+            elif z == "6":
+                c6 = Canvas(playwindow, width=106, height=99)
+                c6.create_oval(26, 50, 26, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 50, 79, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c6.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c6.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c6.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c6.place(x=1, y=620)
+            else:
+                print("error")
+        elif opti[0] == "1":
+            thedie = ["1", "2", "3", "4", "5", "6"]
+            z = random.choice(thedie)
+            if z == "1":
+                c1 = Canvas(playwindow, width=106, height=99)
+                c1.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c1.place(x=1, y=620)
+            elif z == "2":
+                c2 = Canvas(playwindow, width=106, height=99)
+                c2.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c2.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c2.place(x=1, y=620)
+            elif z == "3":
+                c3 = Canvas(playwindow, width=106, height=99)
+                c3.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c3.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c3.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c3.place(x=1, y=620)
+
+            elif z == "4":
+                c4 = Canvas(playwindow, width=106, height=99)
+                c4.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c4.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c4.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c4.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c4.place(x=1, y=620)
+
+            elif z == "5":
+                c5 = Canvas(playwindow, width=106, height=99)
+                c5.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c5.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c5.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c5.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c5.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c5.place(x=1, y=620)
+
+            elif z == "6":
+                c6 = Canvas(playwindow, width=106, height=99)
+                c6.create_oval(26, 50, 26, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 50, 79, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c6.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c6.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c6.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c6.place(x=1, y=620)
+            else:
+                print("error")
+            thedie = ["1", "2", "3", "4", "5", "6"]
+            zz = random.choice(thedie)
+            print(z)
+            if zz == "1":
+                c1 = Canvas(playwindow, width=106, height=99)
+                c1.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c1.place(x=150, y=620)
+            elif zz == "2":
+                c2 = Canvas(playwindow, width=106, height=99)
+                c2.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c2.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c2.place(x=150, y=620)
+            elif zz == "3":
+                c3 = Canvas(playwindow, width=106, height=99)
+                c3.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c3.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c3.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c3.place(x=150, y=620)
+
+            elif zz == "4":
+                c4 = Canvas(playwindow, width=106, height=99)
+                c4.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c4.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c4.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c4.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c4.place(x=150, y=620)
+
+            elif zz == "5":
+                c5 = Canvas(playwindow, width=106, height=99)
+                c5.create_oval(54, 50, 53, 54, outline="black", fill="black", width=20)
+                c5.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c5.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c5.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c5.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c5.place(x=150, y=620)
+
+            elif zz == "6":
+                c6 = Canvas(playwindow, width=106, height=99)
+                c6.create_oval(26, 50, 26, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 50, 79, 54, outline="black", fill="black", width=20)
+                c6.create_oval(79, 80, 79, 84, outline="black", fill="black", width=20)
+                c6.create_oval(26, 80, 26, 84, outline="black", fill="black", width=20)
+                c6.create_oval(79, 20, 79, 24, outline="black", fill="black", width=20)
+                c6.create_oval(26, 20, 26, 24, outline="black", fill="black", width=20)
+                c6.place(x=150, y=620)
+            else:
+                print("error")
+
+    Button(playwindow, overrelief=SOLID, command=die, text="player 1", font=20, pady=20, relief="sunken", bg="#eaf2bf",
+           width=10,
+           activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=100)
 
     playwindow.mainloop()
 
@@ -50,9 +206,18 @@ def gametype():
     # command for child button in the game type window to save the option that player chooses and to quit yhe window
 
     def savegametype():
-        save = [(v.get()), (vv.get())]  # save the value of the option default value = 0 : I die , player 1
-        print(save)   # to ensure from result for me
+        save =v.get(),vv.get()  # save the value of the option default value = 0 : I die , player 1
+        print(save)
+        blw =""
+        writesave = open("./imp files/save.txt", "r+")
+        for lw in save:
+            str(lw)
+            blw =str(blw)+str(lw)
+        print(blw)
+        writesave.write(blw)
         gametypewindow.destroy()
+
+
     gametypewindow = Toplevel(start)
     gametypewindow.title("snake and ladder")
     gametypewindow.geometry("250x250")
@@ -68,7 +233,7 @@ def gametype():
     framegametype2.config(bg="#81d12c")
     # frames pack at the end of def
     value1 = {"I die":0,"II die":1}   # dict one for dies
-    value2 = {"I player":0,"II player":11,"III player":22} # dict 2 for players
+    value2 = {"I player":10,"II player":11,"III player":12} # dict 2 for players
     v = IntVar()   # get value of choice of die
     # display the radiobutton die
     for (text, value) in value1.items():
