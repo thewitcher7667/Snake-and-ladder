@@ -12,7 +12,8 @@ playwindow.title("snake and ladder")
 playwindow.resizable(False, False)
 playwindow.config(bg="#DB7D01")
 frameplaywindw = Frame(playwindow)
-framehawhaw = Frame(frameplaywindw)
+
+
 lolo = []
 xp, yp = 11, 21
 for bzbezo in range(5):
@@ -21,23 +22,45 @@ for bzbezo in range(5):
     xp += 20
     yp += 20
 
-a = 101
-b = [[1, 3, 5, 7, 9], [2, 4, 6, 8, 10]]
-for r in range(1, 11):
-    if r in b[0]:
-        for c in range(1, 11):
-            a = a - 1
-            Label(frameplaywindw, text=a, bg="#EEE8AA", width=8, relief=SOLID, fg="black").grid(row=r, column=c + 1,
-                                                                                            ipadx=0,
-                                                                                            ipady=20, padx=0, pady=0)
-    if r in b[1]:
-        for cd in range(11, 1, -1):
-            a = a - 1
-            Label(frameplaywindw, text=a, bg="#D3D5D4", width=8, relief=SOLID, fg="black").grid(row=r, column=cd,
-                                                                                            ipadx=0,
-                                                                                            ipady=20, padx=0, pady=0)
+canvas_wall = Canvas(playwindow,width=617,height=610)
+canvas_wall.place(x=0,y=0)
+wal = PhotoImage(file="game.png")
+wall = canvas_wall.create_image(308,305,image=wal)
 
-
+def khra(total):
+    if total==1:
+        total = 38
+    elif total == 4 :
+        total= 14
+    elif total == 8:
+        total = 30
+    elif total == 21 :
+        total = 42
+    elif total == 28 :
+        total = 76
+    elif total == 32 :
+        total = 10
+    elif total == 36:
+        total = 6
+    elif total == 48:
+        total = 26
+    elif total == 50:
+        total = 67
+    elif total == 62:
+        total = 18
+    elif total == 71:
+        total = 92
+    elif total == 80:
+        total = 99
+    elif total == 88:
+        total = 24
+    elif total == 95:
+        total = 56
+    elif total == 97:
+        total = 78
+    else:
+        total = total
+    return total
 def dietoss(z):
     if z == "1":
         c1 = Canvas(playwindow, width=106, height=99)
@@ -106,7 +129,6 @@ def die():
             if ll in range(100):
                 if ll in [95, 96, 97, 98, 99]:
                     z = str(random.choice(range(1, 101 - ll)))
-
                 else:
                     z = random.choice(thedie)
             elif ll == 100:
@@ -115,6 +137,7 @@ def die():
                 print("win")
             print("this is z", z)
             totalzh2t.close()
+            Label(playwindow,text=f"Player 1: {z}").place(x=620, y=400)
             savez = open("./imp files/player1.txt", "a")
             savez.write(str(z))
             savez.close()
@@ -141,6 +164,7 @@ def die():
                 print("win")
             print("this is z comp", z)
             totalzh2t.close()
+            Label(playwindow, text=f" Computer: {z}").place(x=620, y=450)
             savez = open("./imp files/comp.txt", "a")
             savez.write(str(z))
             savez.close()
@@ -162,6 +186,8 @@ def adddiez():
             for ele in range(0, len(dew)):
                 total = total + int(dew[ele])
             print("this is tot", total)
+            total = khra(total)
+            print("this is tot from b3d el khra", total)
             totalzh2t.write(str(total))
             totalzh2t.close()
             bew.close()
@@ -177,10 +203,13 @@ def adddiez():
             for ele in range(0, len(dew)):
                 total = total + int(dew[ele])
             print("this is tot comp", total)
+            total = khra(total)
+            print("this is tot from b3d el khra comp", total)
             totalzh2t.write(str(total))
             totalzh2t.close()
             bew.close()
-            diedraw(total, "white",20)
+
+            diedraw(total,"black",20)
 
         comp()
 
@@ -194,29 +223,39 @@ def diedraw(total, col,see):
     if total <= 10:
         xcord = (62 * total) - 31
         ycord = 550
-        letsdrawrec(xcord, ycord, col,see)
+        letsdrawrec(xcord, ycord, col, see)
     elif total > 10:
         ycord = 560 - (math.floor(total / 10)) * 60
         xbeforcord = math.modf(total / 10)
         xcordd = xbeforcord[0]
         if total in lolo:
-            if xcordd == 0:
-                xcordd = 10
-            xcord = 620 - ((62 * (xcordd * 10)) - 31)
-            letsdrawrec(xcord, ycord, col,see)
+            if total in [20,40,60,80,100]:
+                letsdrawrec(31, ycord+60, col, see)
+            else:
+             xcord = 620 - ((62 * (xcordd * 10)) - 31)
+             letsdrawrec(xcord, ycord, col, see)
+
         else:
+            if total in [30,50,70,90]:
+                letsdrawrec(589, ycord+60, col, see)
             xcord = (62 * (xbeforcord[0] * 10)) - 31
             letsdrawrec(xcord, ycord, col,see)
 
 
+
 def letsdrawrec(xcord, ycord, col,see):
-    hawhaw = tk.Canvas(playwindow, width=15, height=15)
+    hawhaw = tk.Canvas(playwindow, width=20, height=20)
     hawhaw.create_rectangle(30, 10, 120, 80, outline=col, fill=col, width=160)
     hawhaw.place(x=xcord, y=(ycord+see))
-    hawhaw.after(1500,hawhaw.destroy)
+    #hawhaw.after(5000,hawhaw.destroy)
 
 
-Button(playwindow, overrelief=SOLID, command=lambda: [die(), adddiez()], text="Player 1", font=20, pady=20,
+
+
+
+
+
+bewlew = Button(playwindow, overrelief=SOLID, command=lambda: [die(), adddiez()], text="Player 1", font=20, pady=20,
        relief="sunken", bg="#eaf2bf", width=10,
        activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=100)
 
@@ -236,9 +275,9 @@ def clear():
     bew.close()
 
 
+
 Button(playwindow, overrelief=SOLID, command=clear, text="clear", font=20, pady=20, relief="sunken", bg="#eaf2bf",
        width=10,
        activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=200)
-framehawhaw.place()
 frameplaywindw.pack(anchor=NW)
 playwindow.mainloop()

@@ -12,7 +12,7 @@ playwindow.title("snake and ladder")
 playwindow.resizable(False, False)
 playwindow.config(bg="#DB7D01")
 frameplaywindw = Frame(playwindow)
-framehawhaw = Frame(frameplaywindw)
+
 lolo = []
 xp, yp = 11, 21
 for bzbezo in range(5):
@@ -36,6 +36,11 @@ for r in range(1, 11):
             Label(frameplaywindw, text=a, bg="#D3D5D4", width=8, relief=SOLID, fg="black").grid(row=r, column=cd,
                                                                                             ipadx=0,
                                                                                             ipady=20, padx=0, pady=0)
+
+canvas_wall = Canvas(playwindow,width=617,height=610)
+canvas_wall.place(x=0,y=0)
+wal = PhotoImage(file="game.png")
+wall = canvas_wall.create_image(308,305,image=wal)
 
 
 def dietoss(z):
@@ -215,8 +220,9 @@ def letsdrawrec(xcord, ycord, col,see):
     hawhaw = tk.Canvas(playwindow, width=15, height=15)
     hawhaw.create_rectangle(30, 10, 120, 80, outline=col, fill=col, width=160)
     hawhaw.place(x=xcord, y=(ycord+see))
-    hawhaw.after(5000,hawhaw.destroy)
-    hawhaw.after(5000, )
+    hawhaw.after(1500,hawhaw.destroy)
+
+
 
 
 
@@ -240,9 +246,9 @@ def clear():
     bew.close()
 
 
+
 Button(playwindow, overrelief=SOLID, command=clear, text="clear", font=20, pady=20, relief="sunken", bg="#eaf2bf",
        width=10,
        activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=200)
-framehawhaw.place()
 frameplaywindw.pack(anchor=NW)
 playwindow.mainloop()
