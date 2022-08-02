@@ -97,11 +97,9 @@ def play():
             thedie = ["1", "2", "3", "4", "5", "6"]
             z = random.choice(thedie)
 
-
+    thedie = ["1", "2", "3", "4", "5", "6"]
     def adddiez():
         if opti[1] == "10":  # 1player and comp are involved
-            thedie = ["1", "2", "3", "4", "5", "6"]
-
             def player1die():
                 totalzh2t = open("./imp files/totalplayer1.txt", "r")
                 ll = totalzh2t.read()
@@ -284,7 +282,9 @@ def play():
             comp()
 
         elif opti[1] == "11":  # 2players are involved
-            pass
+            if btp1["state"] == NORMAL:
+                print("hi")
+
         elif opti[1] == "12":  # 3players are involved
             pass
 
@@ -321,9 +321,18 @@ def play():
         hawhaw.create_rectangle(30, 10, 120, 80, outline=col, fill=col, width=160)
         hawhaw.place(x=xcord, y=(ycord + see))
 
-    Button(playwindow, overrelief=SOLID, command=lambda: [die(), adddiez()], text="Player 1", font=20, pady=20,
+
+
+    btp1 = Button(playwindow, overrelief=SOLID, command=lambda: [die(), adddiez()], text="Player 1", font=20, pady=20,
                     relief="sunken", bg="#eaf2bf", width=10,
-                    activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=100)
+                    activebackground="#e1e3de", bd=1, cursor="hand2").place(x=625, y=100)
+
+    btp2 = Button(playwindow, overrelief=SOLID, command=lambda: [die(), adddiez()], text="Player 2", font=20, pady=20,
+                    relief="sunken", bg="#eaf2bf", width=10,
+                    activebackground="#e1e3de", bd=1, cursor="hand2", state=DISABLED).place(x=625, y=200)
+    btp3 = Button(playwindow, overrelief=SOLID, command=lambda: [die(), adddiez()], text="Player 3", font=20, pady=20,
+                    relief="sunken", bg="#eaf2bf", width=10,
+                    activebackground="#e1e3de", bd=1, cursor="hand2", state=DISABLED).place(x=625, y=300)
 
 
     def clear():
@@ -341,9 +350,10 @@ def play():
         bew.close()
 
 
+
     Button(playwindow, overrelief=SOLID, command=clear, text="clear", font=20, pady=20, relief="sunken", bg="#eaf2bf",
            width=10,
-           activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=200)
+           activebackground="#e1e3de", bd=1, cursor="hand2").place(x=625, y=550)
     frameplaywindw.pack(anchor=NW)
     playwindow.mainloop()
 play()
