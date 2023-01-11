@@ -15,7 +15,6 @@ def play():
     playwindow.config(bg="#DB7D01")
     frameplaywindw = Frame(playwindow)
 
-
     lolo = []
     xp, yp = 11, 21
     for bzbezo in range(5):
@@ -28,13 +27,6 @@ def play():
     canvas_wall2.place(x=0, y=0)
     wal2 = PhotoImage(file="game.png")
     wall2 = canvas_wall2.create_image(308, 305, image=wal2)
-
-
-
-
-
-
-
 
     def dietoss(z):
         if z == "1":
@@ -79,7 +71,6 @@ def play():
         else:
             print("error")
 
-
     opti = []
     saveread = open("./imp files/save.txt", "r")
     global txt
@@ -87,7 +78,6 @@ def play():
         pass
     opti.append(txt[0])
     opti.append(txt[1:])
-
 
     def die():
         if opti[0] == "0":
@@ -146,7 +136,6 @@ def play():
         elif opti[0] == "1":
             thedie = ["1", "2", "3", "4", "5", "6"]
             z = random.choice(thedie)
-
 
     def adddiez():
         if opti[1] == "10":  # 1player and comp are involved
@@ -319,10 +308,10 @@ def play():
         hawhaw.create_rectangle(30, 10, 120, 80, outline=col, fill=col, width=160)
         hawhaw.place(x=xcord, y=(ycord + see))
 
+
     Button(playwindow, overrelief=SOLID, command=lambda: [die(), adddiez()], text="Player 1", font=20, pady=20,
                     relief="sunken", bg="#eaf2bf", width=10,
                     activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=100)
-
 
     def clear():
         bew = open("./imp files/player1.txt", 'w')
@@ -338,9 +327,9 @@ def play():
         bew.write("")
         bew.close()
 
-
     Button(playwindow, overrelief=SOLID, command=clear, text="clear", font=20, pady=20, relief="sunken", bg="#eaf2bf",
            width=10,
            activebackground="#e1e3de", bd=1, cursor="hand2").place(x=620, y=200)
     frameplaywindw.pack(anchor=NW)
     playwindow.mainloop()
+play()

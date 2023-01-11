@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1673468060 source:e:\projects\snake and ladder\c++\snake and ladders\main.cpp
+	<iostream>
+	"XAndYPosition.h"
+
+1673470223 e:\projects\snake and ladder\c++\snake and ladders\xandyposition.h
+
+1673470218 source:e:\projects\snake and ladder\c++\snake and ladders\xandyposition.cpp
+	<iostream>
+	<cmath>
+	"XAndYPosition.h"
+
