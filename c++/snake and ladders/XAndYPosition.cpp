@@ -13,11 +13,9 @@ XAndYPosition::XAndYPosition()
 void XAndYPosition::getNumber(int n)
 {
   number = n;
-  getX();
-  getY();
   XAndY[0] = getX();
   XAndY[1] = getY();
-  cout<<"x : "<<XAndY[0]<<" y : "<<XAndY[1]<<endl;
+  cout<<number<<" x : "<<XAndY[0]<<" y : "<<XAndY[1]<<endl;
 }
 
 int XAndYPosition::getX()
@@ -60,7 +58,7 @@ int XAndYPosition::getY()
     //check number is tenths or not
     if(isInteger((double) number/10))
     {
-        return (number/10 - 1 )*10 + 10;
+        return number;
     }
 
     return (number/10)*10 + 10;
