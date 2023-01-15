@@ -7,6 +7,9 @@ class XAndYPosition
     public:
         XAndYPosition();
         void getNumber(int n);
+        //helper fuctions
+        bool isInteger(double d);
+
     protected:
 
     private:
@@ -17,8 +20,6 @@ class XAndYPosition
         //main functiom
         int getX();
         int getY();
-        //helper fuctions
-        bool isInteger(double d);
 };
 
 #endif // XANDYPOSITION_H
